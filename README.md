@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PRIVPAY — Private Invoice Audit System
 
-## Getting Started
+**Privacy-preserving financial infrastructure for Web3.**
 
-First, run the development server:
+## 🕵️ The Problem: The Privacy-Transparency Paradox
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Imagine you're a freelance developer building for startups. For one project, you charge ₦500,000. For another, more complex project, you charge ₦1,500,000. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+On a standard public blockchain:
+- **Pricing is Exposed**: Anyone can see your rates.
+- **Client Conflicts**: Clients can compare prices and demand lower rates.
+- **Income Tracking**: Your entire financial history is a public book.
+- **Stealth Exposure**: Your clients building in stealth have their activity leaked just by paying you.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Current Web3 users are forced to choose between the **trust of the blockchain** and the **privacy of traditional finance**.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛡️ The Solution: PRIVPAY
 
-## Learn More
+PRIVPAY gives you both. It allows you to create, send, and settle invoices on-chain while keeping the sensitive data encrypted.
 
-To learn more about Next.js, take a look at the following resources:
+- **Private Amounts**: Invoice totals are encrypted using **Fully Homomorphic Encryption (FHE)**.
+- **Private Metadata**: Descriptions and line items are stored encrypted on **IPFS**.
+- **Private Settlement**: Payments are verified using **Zero-Knowledge Proofs (ZK)** without exposing the underlying transaction details.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🧐 The Key Innovation: "Blind" Auditing
+An auditor can verify that an invoice is compliant, that taxes are correctly calculated, or that a payment matches the invoice **without ever seeing the actual numbers**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Key Features
 
-## Deploy on Vercel
+- **Vendor Portal**: Create encrypted invoices and manage receivables privately.
+- **Payer Portal**: Decrypt invoices locally and settle them with ZK-proof authorization.
+- **Auditor Dashboard**: Run threshold and compliance checks on encrypted data.
+- **Neobrutalist UI**: A high-contrast, bold design emphasizing clarity and de-centralization.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Architecture
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Frontend (Next.js)
+- **Domain-Driven Design**: Organized by `/invoice`, `/payment`, and `/audit` features.
+- **Crypto Services**: Simulations for FHE (Fhenix/Zama style), ZK (SnarkJS style), and IPFS.
+
+### Smart Contracts (Solidity)
+- **InvoiceRegistry.sol**: Manages encrypted invoice state.
+- **PaymentManager.sol**: Verifies ZK settlement proofs.
+- **AuditEngine.sol**: Executes FHE-based compliance checks.
+
+## 🏁 How to Run
+
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Visit**:
+   - `http://localhost:3000` (Landing)
+   - `http://localhost:3000/vendor`
+   - `http://localhost:3000/payer`
+   - `http://localhost:3000/auditor`
+
+---
+
+Built for the future of private Web3 infrastructure. 🏗️🔐
