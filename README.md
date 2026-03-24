@@ -32,16 +32,44 @@ An auditor can verify that an invoice is compliant, that taxes are correctly cal
 - **Auditor Dashboard**: Run threshold and compliance checks on encrypted data.
 - **Neobrutalist UI**: A high-contrast, bold design emphasizing clarity and de-centralization.
 
-## 🛠️ Architecture
+## 🛠️ System Architecture
 
-### Frontend (Next.js)
-- **Domain-Driven Design**: Organized by `/invoice`, `/payment`, and `/audit` features.
-- **Crypto Services**: Simulations for FHE (Fhenix/Zama style), ZK (SnarkJS style), and IPFS.
+### 📂 Frontend Folder Structure (Domain-Driven)
+Organizing by domain ensures the project scales cleanly without feature leakage.
 
-### Smart Contracts (Solidity)
-- **InvoiceRegistry.sol**: Manages encrypted invoice state.
-- **PaymentManager.sol**: Verifies ZK settlement proofs.
-- **AuditEngine.sol**: Executes FHE-based compliance checks.
+```text
+/src
+  /app                     # Next.js App Router (Pages & Layouts)
+    /vendor                # Vendor Dashboard
+    /payer                 # Payer Dashboard
+    /auditor               # Auditor Dashboard
+  /domains                 # Business Logic & Component Domains
+    /invoice               # Invoice Creation, Listing, Encryption
+    /payment               # ZK-Proof Settlement Logic
+    /audit                 # Compliance & FHE Computation Logic
+  /shared                  # App-wide Shared Resources
+    /components            # Neobrutalist UI Kit (Button, Card, Box)
+    /lib                   # Crypto Clients (FHE, ZK, IPFS Simulations)
+    /utils                 # Formatting & Helpers
+  /styles                  # Global CSS & Tailwind Theme
+```
+
+### ⛓️ Smart Contract Design (Modular)
+Separating concerns into core modules, libraries, and interfaces.
+
+```text
+/blockchain/contracts
+  /core
+    - InvoiceRegistry.sol  # Handles encrypted state & storage
+    - PaymentManager.sol   # Verifies ZK proofs & handles ETH
+    - AuditEngine.sol     # Runs FHE operations on-chain
+  /interfaces
+    - IInvoice.sol        # Unified invoice interface
+  /libraries
+    - FHEHelpers.sol      # Mock FHE precompile interface
+  /types
+    - DataTypes.sol       # Shared struct definitions
+```
 
 ## 🏁 How to Run
 
